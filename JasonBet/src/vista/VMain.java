@@ -23,6 +23,7 @@ public class VMain extends javax.swing.JFrame {
         this.dao = dao;
 
         initComponents();
+
         setBackground(new Color(0, 0, 0, 0));
 
         setIconImage(new ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/logo.png")).getImage());
@@ -42,7 +43,6 @@ public class VMain extends javax.swing.JFrame {
             }
         });
 
-        iniciarSesion();
     }
 
     /**
@@ -57,6 +57,7 @@ public class VMain extends javax.swing.JFrame {
         roundPanel1 = new recursos.LookVentana.RoundPanel();
         BarraTareas = new recursos.LookVentana.RoundPanel();
         bntCerrar = new javax.swing.JButton();
+        loginAndRegister1 = new vista.LoginAndRegister();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -67,8 +68,10 @@ public class VMain extends javax.swing.JFrame {
         BarraTareas.setMinimumSize(new java.awt.Dimension(100, 25));
         BarraTareas.setPreferredSize(new java.awt.Dimension(28, 25));
 
+        bntCerrar.setBackground(BarraTareas.getBackground());
         bntCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCerrar.png"))); // NOI18N
         bntCerrar.setBorder(null);
+        bntCerrar.setBorderPainted(false);
         bntCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntCerrarActionPerformed(evt);
@@ -80,7 +83,7 @@ public class VMain extends javax.swing.JFrame {
         BarraTareasLayout.setHorizontalGroup(
             BarraTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraTareasLayout.createSequentialGroup()
-                .addContainerGap(1378, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bntCerrar)
                 .addContainerGap())
         );
@@ -96,24 +99,30 @@ public class VMain extends javax.swing.JFrame {
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BarraTareas, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE)
+            .addComponent(BarraTareas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(loginAndRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addComponent(BarraTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(765, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(loginAndRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -127,10 +136,11 @@ public class VMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private recursos.LookVentana.RoundPanel BarraTareas;
     private javax.swing.JButton bntCerrar;
+    private vista.LoginAndRegister loginAndRegister1;
     private recursos.LookVentana.RoundPanel roundPanel1;
     // End of variables declaration//GEN-END:variables
 
-    private void iniciarSesion() {
+    public void iniciarSesion() {
         VPrincipal vPrincipal = new VPrincipal(this, true, dao);
         this.setOpacity(0);
         vPrincipal.setVisible(true);

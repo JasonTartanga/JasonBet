@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.DAO;
 import modelo.DAOImplementacion;
+import vista.LoginAndRegister;
 import vista.VMain;
 
 /**
@@ -14,5 +15,6 @@ public class JasonBet {
         DAO dao = new DAOImplementacion();
         VMain vMain = new VMain(dao);
         vMain.setVisible(true);
+
     }
 }

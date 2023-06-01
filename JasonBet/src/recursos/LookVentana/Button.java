@@ -22,7 +22,6 @@ public class Button extends JButton {
     public Button() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(7, 5, 7, 5));
-        setFocusPainted(false);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
