@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+import modelo.DAO;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
@@ -13,6 +14,9 @@ import org.jdesktop.animation.timing.interpolation.PropertySetter;
 import recursos.LookVentana.EventLogin;
 
 public class LoginAndRegister extends javax.swing.JPanel {
+
+    private VMain vMain;
+    private DAO dao;
 
     private MigLayout layout;
     private Register register;
@@ -38,6 +42,7 @@ public class LoginAndRegister extends javax.swing.JPanel {
         initComponents();
         init();
         initAnimator();
+
     }
 
     private void initAnimator() {
@@ -63,6 +68,7 @@ public class LoginAndRegister extends javax.swing.JPanel {
         setLayout(layout);
         register = new Register();
         login = new Login();
+
         applyEvent(register, false);
         applyEvent(login, true);
         add(login, "pos (50%)-290px 0.5al n n");
@@ -107,6 +113,14 @@ public class LoginAndRegister extends javax.swing.JPanel {
 
     public void setEventLogin(EventLogin event) {
         login.setEventLogin(event);
+    }
+
+    public void pasarParametros(VMain vMain, DAO dao) {
+        this.vMain = vMain;
+        this.dao = dao;
+
+        login.pasarParametros(vMain, dao);
+        register.pasarParametros(dao);
     }
 
     @SuppressWarnings("unchecked")

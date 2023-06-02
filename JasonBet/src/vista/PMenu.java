@@ -1,19 +1,11 @@
 package vista;
 
+import clases.Usuario;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.LinearGradientPaint;
 import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
+import modelo.DAO;
 
 /**
  *
@@ -22,6 +14,8 @@ import javax.swing.JPanel;
 public class PMenu extends JPanel {
 
     private VPrincipal vPrincipal;
+    private Usuario usu;
+    private DAO dao;
 
     /**
      * Creates new form PMenu
@@ -32,46 +26,23 @@ public class PMenu extends JPanel {
 
     }
 
-    public void setPadre(VPrincipal vPrincipal) {
+    public void setPadre(VPrincipal vPrincipal, DAO dao, Usuario usu) {
         this.vPrincipal = vPrincipal;
+        this.dao = dao;
+        this.usu = usu;
+
+        lblUsuario.setText(usu.getNombre());
+        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconos/" + usu.getIcono())));
+        lblSaldo.setText(usu.getSaldo() + "");
     }
 
+    public void actualizarSaldo(String id_usuario, Float saldo) {
+        dao.actualizarSaldo(id_usuario, saldo);
+        usu.setSaldo(usu.getSaldo() + saldo);
+        lblSaldo.setText(usu.getSaldo() + "");
 
-    /*
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
-
-        int width = getWidth();
-        int height = getHeight();
-
-        // Dibujar fondo redondo
-        RoundRectangle2D roundRect = new RoundRectangle2D.Double(0, 0, width, height, 15, 15);
-
-        g2d.setClip(roundRect);
-
-        // Dibujar imagen de fondo
-        String rutaProyecto = System.getProperty("user.dir");
-        String imagen = rutaProyecto + "\\src\\recursos\\iconos_pantalla\\pnlMenu.png";
-
-        Image backgroundImage = null;
-        try {
-            backgroundImage = ImageIO.read(new File(imagen));
-        } catch (IOException ex) {
-            Logger.getLogger(PMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (backgroundImage != null) {
-            g2d.drawImage(backgroundImage, 0, 0, width, height, null);
-        } else {
-            g2d.setColor(Color.WHITE);
-            g2d.fillRect(0, 0, width, height);
-        }
-
-        g2d.dispose();
     }
-     */
+
     @Override
     public void paint(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs.create();
@@ -97,6 +68,8 @@ public class PMenu extends JPanel {
         imgUsuario = new recursos.LookVentana.ImageAvatar();
         lblUsuarioTxt = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
+        lblUsuarioTxt1 = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
         btnInicio = new recursos.LookVentana.ButtonMenu();
         btnRuleta = new recursos.LookVentana.ButtonMenu();
         btnTragaperra = new recursos.LookVentana.ButtonMenu();
@@ -109,11 +82,13 @@ public class PMenu extends JPanel {
 
         setBackground(new java.awt.Color(49, 51, 53));
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/logo.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/logo.png"))); // NOI18N
+
+        lblLetrasLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/letrasLogo.png"))); // NOI18N
 
         pnlUsuario.setBackground(new java.awt.Color(59, 61, 63));
 
-        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Usuario/iconoDavid.png"))); // NOI18N
+        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Iconos/default.png"))); // NOI18N
 
         lblUsuarioTxt.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblUsuarioTxt.setForeground(new java.awt.Color(227, 227, 227));
@@ -121,7 +96,16 @@ public class PMenu extends JPanel {
 
         lblUsuario.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(227, 227, 227));
-        lblUsuario.setText("Jason");
+        lblUsuario.setText("Nombre de usuario");
+
+        lblUsuarioTxt1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblUsuarioTxt1.setForeground(new java.awt.Color(227, 227, 227));
+        lblUsuarioTxt1.setText("SALDO");
+
+        lblSaldo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lblSaldo.setForeground(new java.awt.Color(227, 227, 227));
+        lblSaldo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSaldo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/saldo.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
         pnlUsuario.setLayout(pnlUsuarioLayout);
@@ -134,7 +118,11 @@ public class PMenu extends JPanel {
                 .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuarioTxt)
                     .addComponent(lblUsuario))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUsuarioTxt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlUsuarioLayout.setVerticalGroup(
             pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,14 +133,18 @@ public class PMenu extends JPanel {
                         .addComponent(imgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlUsuarioLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(lblUsuarioTxt)
+                        .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsuarioTxt)
+                            .addComponent(lblUsuarioTxt1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUsuario)
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsuario)
+                            .addComponent(lblSaldo))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
         );
 
-        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCasino.png"))); // NOI18N
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnCasino.png"))); // NOI18N
         btnInicio.setText("Inicio");
         btnInicio.setFocusPainted(false);
         btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -162,7 +154,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnRuleta.png"))); // NOI18N
+        btnRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnRuleta.png"))); // NOI18N
         btnRuleta.setText("Ruleta");
         btnRuleta.setFocusPainted(false);
         btnRuleta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -172,7 +164,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnTragaperra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnTragaperra.png"))); // NOI18N
+        btnTragaperra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnTragaperra.png"))); // NOI18N
         btnTragaperra.setText("Tragaperra");
         btnTragaperra.setFocusPainted(false);
         btnTragaperra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,7 +174,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnQuinela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnQuinela.png"))); // NOI18N
+        btnQuinela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnQuinela.png"))); // NOI18N
         btnQuinela.setText("Quinela");
         btnQuinela.setFocusPainted(false);
         btnQuinela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -192,7 +184,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnCaballos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCaballo.png"))); // NOI18N
+        btnCaballos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnCaballo.png"))); // NOI18N
         btnCaballos.setText("Caballos");
         btnCaballos.setFocusPainted(false);
         btnCaballos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,7 +194,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnMoreOrLess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnMoreOrLess.png"))); // NOI18N
+        btnMoreOrLess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnMoreOrLess.png"))); // NOI18N
         btnMoreOrLess.setText("More Or Less");
         btnMoreOrLess.setFocusPainted(false);
         btnMoreOrLess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,7 +204,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnBlackjack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnBlackjack.png"))); // NOI18N
+        btnBlackjack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnBlackjack.png"))); // NOI18N
         btnBlackjack.setText("Blackjack");
         btnBlackjack.setFocusPainted(false);
         btnBlackjack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -222,7 +214,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCuenta.png"))); // NOI18N
+        btnCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnCuenta.png"))); // NOI18N
         btnCuenta.setText("Cuenta");
         btnCuenta.setFocusPainted(false);
         btnCuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -232,7 +224,7 @@ public class PMenu extends JPanel {
             }
         });
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnSalir.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnSalir.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setFocusPainted(false);
         btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -246,28 +238,29 @@ public class PMenu extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBlackjack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMoreOrLess, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCaballos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRuleta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBlackjack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMoreOrLess, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCaballos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRuleta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTragaperra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnQuinela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblLogo)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblLetrasLogo)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblLogo)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblLetrasLogo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTragaperra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuinela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(pnlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                        .addComponent(pnlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +269,9 @@ public class PMenu extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo)
                     .addComponent(lblLetrasLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(pnlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
+                .addComponent(pnlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(btnRuleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +287,7 @@ public class PMenu extends JPanel {
                 .addComponent(btnBlackjack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -359,8 +352,10 @@ public class PMenu extends JPanel {
     private recursos.LookVentana.ImageAvatar imgUsuario;
     private javax.swing.JLabel lblLetrasLogo;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioTxt;
+    private javax.swing.JLabel lblUsuarioTxt1;
     private recursos.LookVentana.RoundPanel pnlUsuario;
     // End of variables declaration//GEN-END:variables
 

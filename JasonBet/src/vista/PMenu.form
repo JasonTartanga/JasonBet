@@ -21,31 +21,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnCuenta" max="32767" attributes="0"/>
-                  <Component id="btnBlackjack" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnMoreOrLess" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnCaballos" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnRuleta" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnInicio" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblLetrasLogo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnCuenta" max="32767" attributes="0"/>
+                          <Component id="btnBlackjack" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnMoreOrLess" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnCaballos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnRuleta" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnInicio" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnSalir" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnTragaperra" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnQuinela" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblLetrasLogo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnSalir" alignment="1" max="32767" attributes="0"/>
-                  <Component id="btnTragaperra" alignment="1" max="32767" attributes="0"/>
-                  <Component id="btnQuinela" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="pnlUsuario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="pnlUsuario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,9 +60,9 @@
                   <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLetrasLogo" min="-2" pref="64" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="pnlUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Component id="pnlUsuario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="btnRuleta" min="-2" max="-2" attributes="0"/>
@@ -75,7 +78,7 @@
               <Component id="btnBlackjack" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="btnCuenta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -86,11 +89,16 @@
     <Component class="javax.swing.JLabel" name="lblLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/logo.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/logo.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLetrasLogo">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagen/Pantalla/letrasLogo.png"/>
+        </Property>
+      </Properties>
     </Component>
     <Container class="recursos.LookVentana.RoundPanel" name="pnlUsuario">
       <Properties>
@@ -107,10 +115,15 @@
                   <Component id="imgUsuario" min="-2" pref="61" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblUsuarioTxt" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblUsuarioTxt" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="129" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblUsuarioTxt1" max="32767" attributes="0"/>
+                      <Component id="lblSaldo" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -124,10 +137,16 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Component id="lblUsuarioTxt" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblUsuarioTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblUsuarioTxt1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -139,7 +158,7 @@
         <Container class="recursos.LookVentana.ImageAvatar" name="imgUsuario">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/Iconos_Usuario/iconoDavid.png"/>
+              <Image iconType="3" name="/imagen/Iconos/default.png"/>
             </Property>
           </Properties>
 
@@ -166,7 +185,32 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e3" green="e3" red="e3" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Jason"/>
+            <Property name="text" type="java.lang.String" value="Nombre de usuario"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblUsuarioTxt1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="SansSerif" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e3" green="e3" red="e3" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="SALDO"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSaldo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="SansSerif" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e3" green="e3" red="e3" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagen/Pantalla/saldo.png"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -174,7 +218,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnInicio">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnCasino.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnCasino.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Inicio"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -187,7 +231,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnRuleta">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnRuleta.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnRuleta.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ruleta"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -200,7 +244,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnTragaperra">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnTragaperra.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnTragaperra.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tragaperra"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -213,7 +257,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnQuinela">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnQuinela.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnQuinela.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Quinela"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -226,7 +270,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnCaballos">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnCaballo.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnCaballo.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Caballos"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -239,7 +283,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnMoreOrLess">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnMoreOrLess.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnMoreOrLess.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="More Or Less"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -252,7 +296,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnBlackjack">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnBlackjack.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnBlackjack.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Blackjack"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -265,7 +309,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnCuenta">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnCuenta.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnCuenta.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cuenta"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -278,7 +322,7 @@
     <Component class="recursos.LookVentana.ButtonMenu" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/Iconos_Pantalla/btnSalir.png"/>
+          <Image iconType="3" name="/imagen/Pantalla/btnSalir.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Salir"/>
         <Property name="focusPainted" type="boolean" value="false"/>

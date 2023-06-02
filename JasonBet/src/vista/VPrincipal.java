@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package vista;
 
+import clases.Usuario;
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -29,13 +25,13 @@ public class VPrincipal extends javax.swing.JDialog {
     /**
      * Creates new form VPrincipal
      */
-    public VPrincipal(VMain vMain, boolean modal, DAO dao) {
+    public VPrincipal(VMain vMain, boolean modal, DAO dao, Usuario usu) {
         super(vMain, modal);
         this.dao = dao;
         this.vMain = vMain;
         initComponents();
 
-        panelMain.init(new PInicio(this, dao), new PRuleta(), new PTragaperra(), new PQuinela(), new PCaballos(), new PMoreOrLess(), new PBlackjack(), new PCuenta());
+        panelMain.init(new PInicio(this, dao), new PRuleta(), new PTragaperra(), new PQuinela(), new PCaballos(vMain, pMenu, dao, usu), new PMoreOrLess(), new PBlackjack(), new PCuenta());
         panelMain.setAnimate(20);
 
         setBackground(new Color(0, 0, 0, 0));
@@ -54,7 +50,7 @@ public class VPrincipal extends javax.swing.JDialog {
                 setLocation(getLocation().x + dx, getLocation().y + dy);
             }
         });
-        pMenu.setPadre(this);
+        pMenu.setPadre(this, dao, usu);
     }
 
     /**
@@ -66,7 +62,7 @@ public class VPrincipal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new recursos.LookVentana.RoundPanel();
+        roundPanel1 = new recursos.LookVentana.RoundPanel();
         BarraTareas = new recursos.LookVentana.RoundPanel();
         btnCerrar = new javax.swing.JButton();
         pMenu = new vista.PMenu();
@@ -75,10 +71,12 @@ public class VPrincipal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        Fondo.setBackground(new java.awt.Color(21, 21, 21));
+        roundPanel1.setBackground(new java.awt.Color(21, 21, 21));
+
+        BarraTareas.setBackground(new java.awt.Color(49, 51, 53));
 
         btnCerrar.setBackground(BarraTareas.getBackground());
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCerrar.png"))); // NOI18N
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnCerrar.png"))); // NOI18N
         btnCerrar.setBorder(null);
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,14 +89,14 @@ public class VPrincipal extends javax.swing.JDialog {
         BarraTareasLayout.setHorizontalGroup(
             BarraTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraTareasLayout.createSequentialGroup()
-                .addContainerGap(1367, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCerrar)
                 .addGap(17, 17, 17))
         );
         BarraTareasLayout.setVerticalGroup(
             BarraTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraTareasLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(btnCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -107,47 +105,45 @@ public class VPrincipal extends javax.swing.JDialog {
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1004, Short.MAX_VALUE)
+            .addGap(0, 969, Short.MAX_VALUE)
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
-        Fondo.setLayout(FondoLayout);
-        FondoLayout.setHorizontalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addComponent(BarraTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+        javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
+        roundPanel1.setLayout(roundPanel1Layout);
+        roundPanel1Layout.setHorizontalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BarraTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addComponent(pMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
-        FondoLayout.setVerticalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
+        roundPanel1Layout.setVerticalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addComponent(BarraTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(16, 16, 16)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -160,10 +156,10 @@ public class VPrincipal extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private recursos.LookVentana.RoundPanel BarraTareas;
-    private recursos.LookVentana.RoundPanel Fondo;
     private javax.swing.JButton btnCerrar;
     private vista.PMenu pMenu;
     protected recursos.LookVentana.PanelSlide panelMain;
+    private recursos.LookVentana.RoundPanel roundPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void inicio() {
@@ -202,5 +198,4 @@ public class VPrincipal extends javax.swing.JDialog {
         this.dispose();
         vMain.dispose();
     }
-
 }

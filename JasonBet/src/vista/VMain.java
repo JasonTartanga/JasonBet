@@ -23,10 +23,11 @@ public class VMain extends javax.swing.JFrame {
         this.dao = dao;
 
         initComponents();
+        panel.pasarParametros(this, dao);
 
         setBackground(new Color(0, 0, 0, 0));
 
-        setIconImage(new ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/imagen/Pantalla/logo.png")).getImage());
 
         BarraTareas.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -57,19 +58,19 @@ public class VMain extends javax.swing.JFrame {
         roundPanel1 = new recursos.LookVentana.RoundPanel();
         BarraTareas = new recursos.LookVentana.RoundPanel();
         bntCerrar = new javax.swing.JButton();
-        loginAndRegister1 = new vista.LoginAndRegister();
+        panel = new vista.LoginAndRegister();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         roundPanel1.setBackground(new java.awt.Color(21, 21, 21));
 
-        BarraTareas.setBackground(new java.awt.Color(102, 102, 102));
+        BarraTareas.setBackground(new java.awt.Color(49, 51, 53));
         BarraTareas.setMinimumSize(new java.awt.Dimension(100, 25));
         BarraTareas.setPreferredSize(new java.awt.Dimension(28, 25));
 
         bntCerrar.setBackground(BarraTareas.getBackground());
-        bntCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/btnCerrar.png"))); // NOI18N
+        bntCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/btnCerrar.png"))); // NOI18N
         bntCerrar.setBorder(null);
         bntCerrar.setBorderPainted(false);
         bntCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +91,7 @@ public class VMain extends javax.swing.JFrame {
         BarraTareasLayout.setVerticalGroup(
             BarraTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraTareasLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(bntCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -102,7 +103,7 @@ public class VMain extends javax.swing.JFrame {
             .addComponent(BarraTareas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(loginAndRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
@@ -110,7 +111,7 @@ public class VMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addComponent(BarraTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(loginAndRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -136,13 +137,8 @@ public class VMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private recursos.LookVentana.RoundPanel BarraTareas;
     private javax.swing.JButton bntCerrar;
-    private vista.LoginAndRegister loginAndRegister1;
+    private vista.LoginAndRegister panel;
     private recursos.LookVentana.RoundPanel roundPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void iniciarSesion() {
-        VPrincipal vPrincipal = new VPrincipal(this, true, dao);
-        this.setOpacity(0);
-        vPrincipal.setVisible(true);
-    }
 }

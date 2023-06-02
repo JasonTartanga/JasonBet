@@ -114,7 +114,7 @@ public class PRuleta extends javax.swing.JPanel {
         ruleta.setBackground(new java.awt.Color(49, 51, 53));
 
         imgRuleta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ruleta.png"))); // NOI18N
+        imgRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ruleta.png"))); // NOI18N
         imgRuleta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgRuletaMouseClicked(evt);
@@ -129,33 +129,27 @@ public class PRuleta extends javax.swing.JPanel {
         );
         ruletaLayout.setVerticalGroup(
             ruletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imgRuleta, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            .addComponent(imgRuleta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         gestion.setBackground(new java.awt.Color(49, 51, 53));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha1.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha1.png"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha5.png"))); // NOI18N
-        jLabel3.setText("jLabel2");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha5.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha10.png"))); // NOI18N
-        jLabel4.setText("jLabel2");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha10.png"))); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha500.png"))); // NOI18N
-        jLabel5.setText("jLabel2");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha500.png"))); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha100.png"))); // NOI18N
-        jLabel6.setText("jLabel2");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha100.png"))); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/ficha50.png"))); // NOI18N
-        jLabel7.setText("jLabel2");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/ficha50.png"))); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(32, 32));
 
         roundPanel1.setBackground(new java.awt.Color(51, 255, 51));
@@ -555,7 +549,7 @@ public class PRuleta extends javax.swing.JPanel {
         });
         ruleta1.add(a1fila, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 70, 80));
 
-        imgBotonesRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Iconos_Pantalla/botones ruleta.png"))); // NOI18N
+        imgBotonesRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Pantalla/botones ruleta.png"))); // NOI18N
         ruleta1.add(imgBotonesRuleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

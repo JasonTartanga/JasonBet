@@ -1,12 +1,160 @@
 package vista;
 
+import clases.Usuario;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import modelo.DAO;
 
 public class Register extends PanelCustom {
+
+    private DAO dao;
+
+    private LocalDate fechaFinal;
 
     public Register() {
         initComponents();
         setAlpha(1);
+
+    }
+
+    public void pasarParametros(DAO dao) {
+        this.dao = dao;
+    }
+
+    public void comprobarDatos() {
+        String mensaje = "";
+
+        if (txtRUsuario.getText().equalsIgnoreCase("Nombre")) {
+            mensaje += "Por favor introduce un nombre\n";
+            spUsuario.setForeground(new Color(204, 0, 0));
+
+        } else if (txtRUsuario.getText().length() > 25) {
+            mensaje += "El nombre no puede tener mas de 25 caracteres\n";
+            spUsuario.setForeground(new Color(204, 0, 0));
+
+        } else {
+            spUsuario.setForeground(new Color(48, 170, 63));
+        }
+
+        if (txtApellidos.getText().equalsIgnoreCase("Apellidos")) {
+            mensaje += "Por favor introduce tus apellidos\n";
+            spApellido.setForeground(new Color(204, 0, 0));
+
+        } else if (txtApellidos.getText().length() > 50) {
+            mensaje += "Los apellidos no pueden tener mas de 50 caracteres\n";
+            spApellido.setForeground(new Color(204, 0, 0));
+
+        } else {
+            spApellido.setForeground(new Color(48, 170, 63));
+        }
+
+        if (txtRContraseña.getText().equalsIgnoreCase("Contraseña")) {
+            mensaje += "Por favor introduce una contraseña\n";
+            spContrasenia.setForeground(new Color(204, 0, 0));
+
+        } else if (txtRContraseña.getText().length() > 25) {
+            mensaje += "La contraseña no puede tener mas de 25 caracteres\n";
+            spContrasenia.setForeground(new Color(204, 0, 0));
+
+        } else {
+            spContrasenia.setForeground(new Color(48, 170, 63));
+        }
+
+        if (txtDni.getText().equalsIgnoreCase("DNI")) {
+            mensaje += "Por favor introduce un dni\n";
+            spDeni.setForeground(new Color(204, 0, 0));
+
+        } else if (!comprobarDNI()) {
+            mensaje += "Ese dni no es valido\n";
+            spDeni.setForeground(new Color(204, 0, 0));
+
+        } else {
+            spDeni.setForeground(new Color(48, 170, 63));
+        }
+
+        if (txtFecha_nac.getText().equalsIgnoreCase("Nacimiento")) {
+            mensaje += "Por favor introduce tu fecha de nacimiento\n";
+            spFecha_nac.setForeground(new Color(204, 0, 0));
+
+        } else if (!comprobarFecha()) {
+            mensaje += "Introduce una fecha valida\n";
+            spFecha_nac.setForeground(new Color(204, 0, 0));
+
+        } else {
+            spFecha_nac.setForeground(new Color(48, 170, 63));
+        }
+
+        if (mensaje == "") {
+            registrarUsuario();
+            System.out.println("vista.Register.comprobarDatos()");
+        } else {
+            JOptionPane.showMessageDialog(this, mensaje);
+        }
+    }
+
+    public void registrarUsuario() {
+        Usuario usu = new Usuario();
+
+        usu.setId_usuario(dao.generarIdUsuario());
+        usu.setNombre(txtRUsuario.getText());
+        usu.setApellidos(txtApellidos.getText());
+        usu.setContrasenia(txtRContraseña.getText());
+        usu.setDni(txtDni.getText());
+        usu.setFecha_nac(fechaFinal);
+        usu.setGmail(txtGmail.getText());
+        usu.setSaldo(0);
+        usu.setIcono("default.png");
+
+        dao.registrarUsuario(usu);
+
+        JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+    }
+
+    public boolean comprobarDNI() {
+        String dni = txtDni.getText();
+
+        if (recursos.Utilidades.validarDni(dni)) {
+            spDeni.setForeground(new Color(48, 170, 63));
+            return true;
+
+        } else {
+            spDeni.setForeground(new Color(204, 0, 0));
+            return false;
+        }
+    }
+
+    public boolean comprobarFecha() {
+        DateTimeFormatter formateadorFinal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fecha = recursos.Utilidades.validarFecha(txtFecha_nac.getText());
+
+        if (fecha != null) {
+            String dia = String.format("%02d", fecha.getDayOfMonth());
+            String mes = String.format("%02d", fecha.getMonthValue());
+
+            fechaFinal = LocalDate.parse((fecha.getYear() + "-" + mes + "-" + dia), formateadorFinal);
+            spFecha_nac.setForeground(new Color(48, 170, 63));
+            return true;
+
+        } else {
+            spFecha_nac.setForeground(new Color(204, 0, 0));
+            return false;
+        }
+
+    }
+
+    public boolean comprobarGmail() {
+        String gmail = txtGmail.getText();
+
+        if (recursos.Utilidades.validarGmail(gmail)) {
+            spGmail.setForeground(new Color(48, 170, 63));
+            return true;
+
+        } else {
+            spGmail.setForeground(new Color(204, 0, 0));
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +187,11 @@ public class Register extends PanelCustom {
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setText("Sign Up");
         button1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         txtRUsuario.setBackground(getBackground());
         txtRUsuario.setForeground(new java.awt.Color(227, 227, 227));
@@ -53,6 +206,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spUsuario.setBackground(getBackground());
         spUsuario.setForeground(lblTitulo.getForeground());
 
         txtApellidos.setBackground(getBackground());
@@ -68,6 +222,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spApellido.setBackground(getBackground());
         spApellido.setForeground(lblTitulo.getForeground());
 
         txtDni.setBackground(getBackground());
@@ -83,6 +238,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spDeni.setBackground(getBackground());
         spDeni.setForeground(lblTitulo.getForeground());
 
         txtRContraseña.setBackground(getBackground());
@@ -99,6 +255,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spContrasenia.setBackground(getBackground());
         spContrasenia.setForeground(lblTitulo.getForeground());
 
         txtFecha_nac.setBackground(getBackground());
@@ -114,6 +271,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spFecha_nac.setBackground(getBackground());
         spFecha_nac.setForeground(lblTitulo.getForeground());
 
         txtGmail.setBackground(getBackground());
@@ -129,6 +287,7 @@ public class Register extends PanelCustom {
             }
         });
 
+        spGmail.setBackground(getBackground());
         spGmail.setForeground(lblTitulo.getForeground());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -181,9 +340,7 @@ public class Register extends PanelCustom {
                     .addComponent(txtFecha_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(spDeni, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(spFecha_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(spFecha_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -196,54 +353,108 @@ public class Register extends PanelCustom {
 
     private void txtRUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRUsuarioFocusGained
         spUsuario.setForeground(new Color(0, 153, 255));
-        if (txtRUsuario.getText().equalsIgnoreCase("Usuario")) {
 
+        if (txtRUsuario.getText().equalsIgnoreCase("Nombre")) {
+            txtRUsuario.setText("");
         }
     }//GEN-LAST:event_txtRUsuarioFocusGained
 
     private void txtRUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRUsuarioFocusLost
-        // TODO add your handling code here:
+        spUsuario.setForeground(lblTitulo.getForeground());
+
+        if (txtRUsuario.getText().equalsIgnoreCase("")) {
+            txtRUsuario.setText("Nombre");
+        }
     }//GEN-LAST:event_txtRUsuarioFocusLost
 
     private void txtApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusGained
-        spUsuario.setForeground(new Color(0, 153, 255));
+        spApellido.setForeground(new Color(0, 153, 255));
+
+        if (txtApellidos.getText().equalsIgnoreCase("Apellidos")) {
+            txtApellidos.setText("");
+        }
     }//GEN-LAST:event_txtApellidosFocusGained
 
     private void txtApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusLost
-        // TODO add your handling code here:
+        spApellido.setForeground(lblTitulo.getForeground());
+
+        if (txtApellidos.getText().equalsIgnoreCase("")) {
+            txtApellidos.setText("Apellidos");
+        }
     }//GEN-LAST:event_txtApellidosFocusLost
 
     private void txtRContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRContraseñaFocusGained
-        spUsuario.setForeground(new Color(0, 153, 255));
+        spContrasenia.setForeground(new Color(0, 153, 255));
+
+        if (txtRContraseña.getText().equalsIgnoreCase("Contraseña")) {
+            txtRContraseña.setText("");
+            txtRContraseña.setEchoChar('*');
+        }
     }//GEN-LAST:event_txtRContraseñaFocusGained
 
     private void txtRContraseñaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRContraseñaFocusLost
-        // TODO add your handling code here:
+        spContrasenia.setForeground(lblTitulo.getForeground());
+
+        if (txtRContraseña.getText().equalsIgnoreCase("")) {
+            txtRContraseña.setText("Usuario");
+            txtRContraseña.setEchoChar((char) 0);
+        }
     }//GEN-LAST:event_txtRContraseñaFocusLost
 
     private void txtDniFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusGained
-        spUsuario.setForeground(new Color(0, 153, 255));
+        spDeni.setForeground(new Color(0, 153, 255));
+
+        if (txtDni.getText().equalsIgnoreCase("DNI")) {
+            txtDni.setText("");
+        }
     }//GEN-LAST:event_txtDniFocusGained
 
     private void txtDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusLost
-        // TODO add your handling code here:
+        spDeni.setForeground(lblTitulo.getForeground());
+
+        if (txtDni.getText().equalsIgnoreCase("")) {
+            txtDni.setText("DNI");
+        }
+        comprobarDNI();
     }//GEN-LAST:event_txtDniFocusLost
 
     private void txtFecha_nacFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFecha_nacFocusGained
-        spUsuario.setForeground(new Color(0, 153, 255));
+        spFecha_nac.setForeground(new Color(0, 153, 255));
+
+        if (txtFecha_nac.getText().equalsIgnoreCase("Nacimiento")) {
+            txtFecha_nac.setText("");
+        }
     }//GEN-LAST:event_txtFecha_nacFocusGained
 
     private void txtFecha_nacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFecha_nacFocusLost
-        // TODO add your handling code here:
+        spFecha_nac.setForeground(lblTitulo.getForeground());
+
+        if (txtFecha_nac.getText().equalsIgnoreCase("")) {
+            txtFecha_nac.setText("Nacimiento");
+        }
+        comprobarFecha();
     }//GEN-LAST:event_txtFecha_nacFocusLost
 
     private void txtGmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGmailFocusGained
-        spUsuario.setForeground(new Color(0, 153, 255));
+        spGmail.setForeground(new Color(0, 153, 255));
+
+        if (txtGmail.getText().equalsIgnoreCase("Gmail")) {
+            txtGmail.setText("");
+        }
     }//GEN-LAST:event_txtGmailFocusGained
 
     private void txtGmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGmailFocusLost
-        // TODO add your handling code here:
+        spGmail.setForeground(lblTitulo.getForeground());
+
+        if (txtGmail.getText().equalsIgnoreCase("")) {
+            txtGmail.setText("Gmail");
+        }
+        comprobarGmail();
     }//GEN-LAST:event_txtGmailFocusLost
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        comprobarDatos();
+    }//GEN-LAST:event_button1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private recursos.LookVentana.Button button1;

@@ -2,7 +2,6 @@ package controlador;
 
 import modelo.DAO;
 import modelo.DAOImplementacion;
-import vista.LoginAndRegister;
 import vista.VMain;
 
 /**

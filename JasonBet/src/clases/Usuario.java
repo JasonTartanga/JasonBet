@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package clases;
 
 import java.time.LocalDate;
@@ -15,10 +11,12 @@ public class Usuario {
     private String id_usuario;
     private String nombre;
     private String apellidos;
+    private String contrasenia;
     private String dni;
     private String gmail;
     private LocalDate fecha_nac;
     private float saldo;
+    private String imagen;
 
     public String getId_usuario() {
         return id_usuario;
@@ -26,6 +24,14 @@ public class Usuario {
 
     public void setId_usuario(String id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getNombre() {
@@ -76,9 +82,17 @@ public class Usuario {
         this.saldo = saldo;
     }
 
+    public void setIcono(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getIcono() {
+        return imagen;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id_usuario=" + id_usuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", gmail=" + gmail + ", fecha_nac=" + fecha_nac + ", saldo=" + saldo + '}';
+        return "Usuario{" + "id_usuario=" + id_usuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrasenia=" + contrasenia + ", dni=" + dni + ", gmail=" + gmail + ", fecha_nac=" + fecha_nac + ", saldo=" + saldo + ", imagen=" + imagen + '}';
     }
 
 }
