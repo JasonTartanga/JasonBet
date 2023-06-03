@@ -4,9 +4,11 @@
  */
 package vista;
 
+import clases.Usuario;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import modelo.DAO;
 
 /**
  *
@@ -14,11 +16,22 @@ import java.awt.RenderingHints;
  */
 public class PCuenta extends javax.swing.JPanel {
 
+    private DAO dao;
+    private Usuario usu;
+
     /**
      * Creates new form PCuenta
      */
-    public PCuenta() {
+    public PCuenta(DAO dao, Usuario usu) {
+        this.dao = dao;
+        this.usu = usu;
+
         initComponents();
+        // setOpaque(false);
+
+        panelSlide.init(new PConfigurarCuenta(dao, usu), new PConfigurarCuenta(dao, usu), new PC());
+        panelSlide.setAnimate(20);
+
     }
 
     @Override
@@ -40,18 +53,139 @@ public class PCuenta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        roundPanel1 = new recursos.LookVentana.RoundPanel();
+        roundPanel10 = new recursos.LookVentana.RoundPanel();
+        roundPanel13 = new recursos.LookVentana.RoundPanel();
+        roundPanel14 = new recursos.LookVentana.RoundPanel();
+        panelSlide = new recursos.LookVentana.PanelSlide();
+
+        setBackground(new java.awt.Color(21, 21, 21));
+
+        roundPanel1.setBackground(new java.awt.Color(21, 21, 21));
+
+        roundPanel10.setBackground(new java.awt.Color(49, 51, 53));
+        roundPanel10.setPreferredSize(new java.awt.Dimension(261, 239));
+        roundPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roundPanel10MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundPanel10Layout = new javax.swing.GroupLayout(roundPanel10);
+        roundPanel10.setLayout(roundPanel10Layout);
+        roundPanel10Layout.setHorizontalGroup(
+            roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        roundPanel10Layout.setVerticalGroup(
+            roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+        );
+
+        roundPanel13.setBackground(new java.awt.Color(49, 51, 53));
+        roundPanel13.setPreferredSize(new java.awt.Dimension(261, 239));
+        roundPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roundPanel13MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundPanel13Layout = new javax.swing.GroupLayout(roundPanel13);
+        roundPanel13.setLayout(roundPanel13Layout);
+        roundPanel13Layout.setHorizontalGroup(
+            roundPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        roundPanel13Layout.setVerticalGroup(
+            roundPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+        );
+
+        roundPanel14.setBackground(new java.awt.Color(49, 51, 53));
+        roundPanel14.setPreferredSize(new java.awt.Dimension(261, 239));
+        roundPanel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roundPanel14MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout roundPanel14Layout = new javax.swing.GroupLayout(roundPanel14);
+        roundPanel14.setLayout(roundPanel14Layout);
+        roundPanel14Layout.setHorizontalGroup(
+            roundPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
+        );
+        roundPanel14Layout.setVerticalGroup(
+            roundPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+        );
+
+        panelSlide.setBackground(new java.awt.Color(49, 51, 53));
+
+        javax.swing.GroupLayout panelSlideLayout = new javax.swing.GroupLayout(panelSlide);
+        panelSlide.setLayout(panelSlideLayout);
+        panelSlideLayout.setHorizontalGroup(
+            panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 590, Short.MAX_VALUE)
+        );
+        panelSlideLayout.setVerticalGroup(
+            panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
+        roundPanel1.setLayout(roundPanel1Layout);
+        roundPanel1Layout.setHorizontalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addComponent(panelSlide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(roundPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(roundPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(roundPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)))
+        );
+        roundPanel1Layout.setVerticalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addComponent(roundPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(roundPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(roundPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelSlide, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void roundPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel10MouseClicked
+        panelSlide.show(0);
+    }//GEN-LAST:event_roundPanel10MouseClicked
+
+    private void roundPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel13MouseClicked
+        panelSlide.show(1);
+    }//GEN-LAST:event_roundPanel13MouseClicked
+
+    private void roundPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel14MouseClicked
+        panelSlide.show(2);
+    }//GEN-LAST:event_roundPanel14MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private recursos.LookVentana.PanelSlide panelSlide;
+    private recursos.LookVentana.RoundPanel roundPanel1;
+    private recursos.LookVentana.RoundPanel roundPanel10;
+    private recursos.LookVentana.RoundPanel roundPanel13;
+    private recursos.LookVentana.RoundPanel roundPanel14;
     // End of variables declaration//GEN-END:variables
 }

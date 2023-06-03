@@ -159,12 +159,12 @@ public class PCaballos extends javax.swing.JPanel {
 
         if (ganador != null) {
             if (ganador.getNombre().equalsIgnoreCase(lblCaballo.getText())) {
-                saldo = ((int) txtCantidad.getValue() * ganador.getCuota());
+                saldo = ((float) txtCantidad.getValue() * ganador.getCuota());
 
                 MessageDialog md = new MessageDialog(vMain);
                 md.showMessage("Enhorabuena", "Enhorabuena, has ganado " + saldo + "€");
 
-                pMenu.actualizarSaldo(usu.getId_usuario(), (int) txtCantidad.getValue() + saldo);
+                pMenu.actualizarSaldo(usu.getId_usuario(), (float) txtCantidad.getValue() + saldo);
 
             } else {
                 MessageDialog md = new MessageDialog(vMain);
@@ -237,11 +237,11 @@ public class PCaballos extends javax.swing.JPanel {
                 .addGroup(carreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomCaballo1)
                     .addComponent(lblNomCaballo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(carreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(progressBarCaballo2, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                    .addComponent(progressBarCaballo2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
                     .addComponent(progressBarCaballo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74))
+                .addGap(56, 56, 56))
         );
         carreraLayout.setVerticalGroup(
             carreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,9 +280,9 @@ public class PCaballos extends javax.swing.JPanel {
                 .addComponent(imgCaballo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addComponent(lblNom1)
-                .addGap(92, 92, 92)
+                .addGap(100, 100, 100)
                 .addComponent(lblCuo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCaballo1Layout.setVerticalGroup(
             panelCaballo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,9 +320,9 @@ public class PCaballos extends javax.swing.JPanel {
                 .addComponent(imgCaballo2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addComponent(lblNom2)
-                .addGap(92, 92, 92)
+                .addGap(100, 100, 100)
                 .addComponent(lblCuo2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         panelCaballo2Layout.setVerticalGroup(
             panelCaballo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,18 +343,18 @@ public class PCaballos extends javax.swing.JPanel {
         caballosLayout.setHorizontalGroup(
             caballosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, caballosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(caballosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelCaballo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelCaballo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                    .addComponent(panelCaballo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelCaballo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         caballosLayout.setVerticalGroup(
             caballosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, caballosLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(panelCaballo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(panelCaballo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -392,6 +392,7 @@ public class PCaballos extends javax.swing.JPanel {
         lblCantidadTxt.setText("CANTIDAD");
 
         txtCantidad.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtCantidad.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 10.0f));
         txtCantidad.setBorder(null);
 
         spCantidad.setForeground(new java.awt.Color(227, 227, 227));
@@ -449,11 +450,11 @@ public class PCaballos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(carrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(caballos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(carrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

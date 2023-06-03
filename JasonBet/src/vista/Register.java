@@ -1,5 +1,6 @@
 package vista;
 
+import recursos.LookVentana.PanelCustom;
 import clases.Usuario;
 import java.awt.Color;
 import java.time.LocalDate;

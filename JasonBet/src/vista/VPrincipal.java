@@ -31,7 +31,7 @@ public class VPrincipal extends javax.swing.JDialog {
         this.vMain = vMain;
         initComponents();
 
-        panelMain.init(new PInicio(this, dao), new PRuleta(), new PTragaperra(), new PQuinela(), new PCaballos(vMain, pMenu, dao, usu), new PMoreOrLess(), new PBlackjack(), new PCuenta());
+        panelMain.init(new PInicio(this, dao), new PRuleta(), new PTragaperra(), new PQuinela(), new PCaballos(vMain, pMenu, dao, usu), new PMoreOrLess(), new PBlackjack(), new PCuenta(dao, usu));
         panelMain.setAnimate(20);
 
         setBackground(new Color(0, 0, 0, 0));
@@ -100,6 +100,8 @@ public class VPrincipal extends javax.swing.JDialog {
                 .addComponent(btnCerrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        panelMain.setBackground(new java.awt.Color(21, 21, 21));
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);

@@ -14,6 +14,8 @@ public class Caballo {
     private String nombre;
     private String icono;
     private float cuota;
+    private int carreras;
+    private int victorias;
 
     public String getId_caballo() {
         return id_caballo;
@@ -47,9 +49,25 @@ public class Caballo {
         this.cuota = cuota;
     }
 
+    public int getCarreras() {
+        return carreras;
+    }
+
+    public void setCarreras(int carreras) {
+        this.carreras = carreras;
+    }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public void setVictorias(int victorias) {
+        this.victorias = victorias;
+    }
+
     @Override
     public String toString() {
-        return "Caballo{" + "id_caballo=" + id_caballo + ", nombre=" + nombre + ", icono=" + icono + ", cuota=" + cuota + '}';
+        return "Caballo{" + "id_caballo=" + id_caballo + ", nombre=" + nombre + ", icono=" + icono + ", cuota=" + cuota + ", carreras=" + carreras + ", victorias=" + victorias + '}';
     }
 
 }

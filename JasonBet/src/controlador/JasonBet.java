@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.DAO;
 import modelo.DAOImplementacion;
+import vista.TarjetaDeCredito;
 import vista.VMain;
 
 /**
@@ -14,6 +15,6 @@ public class JasonBet {
         DAO dao = new DAOImplementacion();
         VMain vMain = new VMain(dao);
         vMain.setVisible(true);
-
     }
+
 }

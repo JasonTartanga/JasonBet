@@ -118,6 +118,11 @@
         <Component class="vista.PMenu" name="pMenu">
         </Component>
         <Container class="recursos.LookVentana.PanelSlide" name="panelMain">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="15" green="15" red="15" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>

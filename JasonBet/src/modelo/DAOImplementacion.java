@@ -1,6 +1,7 @@
 package modelo;
 
 import clases.Caballo;
+import clases.Tarjeta;
 import clases.Usuario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,6 +35,8 @@ public class DAOImplementacion implements DAO {
     final private String INICIAR_SESION = "SELECT * FROM Usuario WHERE nombre = ? and contrasenia = ?";
 
     final private String LISTAR_CABALLOS = "SELECT * FROM Caballo";
+
+    final private String LISTAR_TARJETAS_USUARIO = "SELECT * FROM Tarjeta WHERE num_tarjeta in (SELECT num_tarjeta FROM MetodoPago WHERE id_usuario = ?)";
 
 //************** UPDATES***************/
     final private String ACTUALIZAR_SALDO = "UPDATE Usuario SET saldo = saldo + ? WHERE id_usuario = ?";
@@ -216,6 +219,35 @@ public class DAOImplementacion implements DAO {
             e.printStackTrace();
         }
         this.cerrarConexion();
+    }
+
+    @Override
+    public List<Tarjeta> listarTarjetasUsuario(String id_usuario) {
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        List<Tarjeta> tarjetas = new ArrayList<>();
+
+        this.abrirConexion();
+
+        try {
+            stmt = con.prepareStatement(LISTAR_TARJETAS_USUARIO);
+            stmt.setString(1, id_usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Tarjeta tar = new Tarjeta();
+                tar.setNum_tarjeta(rs.getString("num_tarjeta"));
+                tar.setFecha_cad(LocalDate.parse(rs.getDate("fecha_cad") + "", formateador));
+                tar.setCsv(rs.getInt("csv"));
+                tar.setPin(rs.getInt("pin"));
+                tar.setSaldo(rs.getFloat("saldo"));
+                tarjetas.add(tar);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.cerrarConexion();
+        return tarjetas;
     }
 
 }

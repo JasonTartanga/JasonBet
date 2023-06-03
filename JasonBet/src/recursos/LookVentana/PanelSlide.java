@@ -44,6 +44,7 @@ public class PanelSlide extends javax.swing.JPanel {
                 c.setSize(getSize());
                 c.setVisible(false);
                 this.add(c);
+
             }
             //  get first componect to show on panel when init
             Component show = list.get(0);

@@ -1,4 +1,4 @@
-package vista;
+package recursos.LookVentana;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
@@ -7,6 +7,7 @@ import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JComponent;
+import vista.LoginAndRegister;
 
 public class PanelCustom extends JComponent {
 
